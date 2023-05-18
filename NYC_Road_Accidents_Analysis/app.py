@@ -6,8 +6,8 @@ import plotly.express as px
 from datetime import datetime
 
 
-DATE_TIME = "date/time"
-#DATE_TIME = pd.to_datetime(data["date/time"])
+#DATE_TIME = "date/time"
+DATE_TIME = pd.to_datetime(data["date/time"],format='%d-%m-%Y %H:%M')
 # DATA_URL = (r"your_path\Motor_Vehicle_Collisions_-_Crashes.csv")
 DATA_URL = ("NYC_Road_Accidents_Analysis/Motor_Vehicle.csv")
 
