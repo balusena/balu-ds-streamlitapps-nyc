@@ -24,7 +24,7 @@ def load_data(nrows):
     return data
 
 data = load_data(15000)
-data[DATE_TIME] = pd.to_datetime(data[DATE_TIME], format='%m-%d-%y %H:%M')
+data[DATE_TIME] = pd.to_datetime(data[DATE_TIME],format='%m/%d/%Y %H:%M')
 data[['latitude', 'longitude']].to_csv("NYC_Road_Accidents_Analysis/lat_long.csv", index=False)
 
 st.header("Areas where most people are injured")
