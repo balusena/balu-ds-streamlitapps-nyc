@@ -24,7 +24,7 @@ def load_data(nrows):
     data.dropna(subset=['LATITUDE', 'LONGITUDE'], inplace=True)
     data.rename(columns=lambda x: str(x).lower(), inplace=True)
     
-return data
+    return data
 
 
 data = load_data(15000)
