@@ -15,7 +15,7 @@ st.markdown("Dashboard designed to analyze Road Accidents in New York City")
 @st.cache(persist=True)
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows, parse_dates=[['CRASH_DATE', 'CRASH_TIME']])
-    data[DATE_TIME] = pd.to_datetime(data["crash_date"] + " " + data["crash_time"], infer_datetime_format=True)
+    data[DATE_TIME] = pd.to_datetime(data["date/time"], infer_datetime_format=True)
     data.dropna(subset=['LATITUDE', 'LONGITUDE'], inplace=True)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
