@@ -4,7 +4,6 @@ import numpy as np
 import pydeck as pdk
 import plotly.express as px
 
-
 DATE_TIME = "date/time"
 DATA_URL = ("NYC_Road_Accidents_Analysis/Motor_Vehicle.csv")
 # DATA_URL = (r"your_path\Motor_Vehicle_Collisions_-_Crashes.csv")
@@ -19,7 +18,7 @@ def load_data(nrows):
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
     data.rename(columns={"crash_date_crash_time": "date/time"}, inplace=True)
-    #data[DATE_TIME] = pd.to_datetime(data["crash_date_crash_time"], infer_datetime_format=True)
+    data[DATE_TIME] = pd.to_datetime(data["date/time"], infer_datetime_format=True)
     return data
 
 data = load_data(15000)
