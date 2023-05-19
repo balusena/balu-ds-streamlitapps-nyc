@@ -13,19 +13,12 @@ st.markdown("Dashboard designed to analyze Road Accidents in New York City")
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
     
-    # Parse dates with format MM/DD/YYYY HH:MM
-    data["date/time"] = pd.to_datetime(data["CRASH_DATE"] + " " + data["CRASH_TIME"], format="%m/%d/%Y %H:%M")
-    
-    # Parse dates with format MM-DD-YY HH:MM
-    alt_format = "%m-%d-%y %H:%M"
-    alt_date_mask = data["CRASH_DATE"].str.contains("-", na=False)
-    data.loc[alt_date_mask, "date/time"] = pd.to_datetime(data.loc[alt_date_mask, "CRASH_DATE"] + " " + data.loc[alt_date_mask, "CRASH_TIME"], format=alt_format)
+    data["date/time"] = pd.to_datetime(data["CRASH_DATE"] + " " + data["CRASH_TIME"], infer_datetime_format=True)
     
     data.dropna(subset=['LATITUDE', 'LONGITUDE'], inplace=True)
     data.rename(columns=lambda x: str(x).lower(), inplace=True)
     
     return data
-
 
 data = load_data(15000)
 data[['latitude', 'longitude']].to_csv("NYC_Road_Accidents_Analysis/lat_long.csv", index=False)
